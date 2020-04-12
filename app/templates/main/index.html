@@ -1,0 +1,31 @@
+{% extends 'common/base.html' %}
+
+{% from 'common/macro.html' import pagination_show %}
+
+{% block title %} Home {% endblock %}
+
+{% block page_content %}
+    {{ wtf.quick_form(form) }}
+
+{% for p in posts %}
+    <hr style="margin-top: 10px; margin-bottom: 10px;"/>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" src="..." alt="...">
+            </a>
+        </div>
+        <div class="media-body">
+            <div style="float: right;">{{ moment(p.timestamp).fromNow() }}</div>
+            <h4 class="media-heading">{{ p.user.username }}</h4>
+            {{ p.content }}
+        </div>
+    </div>
+
+
+{% endfor %}
+ <hr/>
+
+{{ pagination_show(pagination, 'main.index') }}
+
+{% endblock %}
